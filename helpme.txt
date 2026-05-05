@@ -1,0 +1,10 @@
+colcon build --allow-overriding realtime_tools --packages-select realtime_tools --cmake-args -DBUILD_TESTING=ON
+Starting >>> realtime_tools
+--- stderr: realtime_tools
+CMake Error: The source "/home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/CMakeLists.txt" does not match the source "/home/luc/ros2_ws/src/ros-controls/realtime_tools/realtime_tools/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+---
+Failed   <<< realtime_tools [0.02s, exited with code 1]
+
+Summary: 0 packages finished [0.39s]
+  1 package failed: realtime_tools
+  1 package had stderr output: realtime_tools
