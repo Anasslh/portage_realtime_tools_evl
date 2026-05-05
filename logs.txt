@@ -1,0 +1,574 @@
+~/ros2_ws/build/realtime_tools$ ctest -V
+UpdateCTestConfiguration  from :/home/luc/ros2_ws/build/realtime_tools/CTestConfiguration.ini
+Parse Config file:/home/luc/ros2_ws/build/realtime_tools/CTestConfiguration.ini
+ Add coverage exclude regular expressions.
+UpdateCTestConfiguration  from :/home/luc/ros2_ws/build/realtime_tools/CTestConfiguration.ini
+Parse Config file:/home/luc/ros2_ws/build/realtime_tools/CTestConfiguration.ini
+Test project /home/luc/ros2_ws/build/realtime_tools
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: thread_priority_tests
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/thread_priority_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/thread_priority_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/thread_priority_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/thread_priority_tests.gtest.xml"
+1: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+1:  - /home/luc/ros2_ws/build/realtime_tools/thread_priority_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/thread_priority_tests.gtest.xml
+1: Running main() from gmock_main.cc
+1: [==========] Running 7 tests from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 7 tests from thread_priority
+1: [ RUN      ] thread_priority.get_core_count
+1: [       OK ] thread_priority.get_core_count (0 ms)
+1: [ RUN      ] thread_priority.set_thread_affinity_valid
+1: [       OK ] thread_priority.set_thread_affinity_valid (100 ms)
+1: [ RUN      ] thread_priority.set_thread_affinity_invalid_too_many_cores
+1: [       OK ] thread_priority.set_thread_affinity_invalid_too_many_cores (100 ms)
+1: [ RUN      ] thread_priority.set_current_thread_affinity_invalid_too_many_cores
+1: [       OK ] thread_priority.set_current_thread_affinity_invalid_too_many_cores (0 ms)
+1: [ RUN      ] thread_priority.set_thread_affinity_valid_reset
+1: [       OK ] thread_priority.set_thread_affinity_valid_reset (100 ms)
+1: [ RUN      ] thread_priority.set_current_thread_affinity_valid_reset
+1: [       OK ] thread_priority.set_current_thread_affinity_valid_reset (0 ms)
+1: [ RUN      ] thread_priority.set_current_thread_affinity_valid
+1: [       OK ] thread_priority.set_current_thread_affinity_valid (0 ms)
+1: [----------] 7 tests from thread_priority (301 ms total)
+1: 
+1: [----------] Global test environment tear-down
+1: [==========] 7 tests from 1 test suite ran. (301 ms total)
+1: [  PASSED  ] 7 tests.
+1: -- run_test.py: return code 0
+1: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/thread_priority_tests.gtest.xml'
+1: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/thread_priority_tests.gtest.xml'
+1/9 Test #1: thread_priority_tests ...............   Passed    0.40 sec
+test 2
+    Start 2: realtime_thread_safe_box_tests
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_thread_safe_box_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/realtime_thread_safe_box_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/realtime_thread_safe_box_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_thread_safe_box_tests.gtest.xml"
+2: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+2:  - /home/luc/ros2_ws/build/realtime_tools/realtime_thread_safe_box_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_thread_safe_box_tests.gtest.xml
+2: Running main() from gmock_main.cc
+2: [==========] Running 48 tests from 3 test suites.
+2: [----------] Global test environment set-up.
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/0, where TypeParam = std::mutex
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.empty_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/0.empty_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.default_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/0.default_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.non_default_constructable
+2: [       OK ] TypedRealtimeThreadSafeBox/0.non_default_constructable (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.standard_get
+2: [       OK ] TypedRealtimeThreadSafeBox/0.standard_get (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.initializer_list
+2: [       OK ] TypedRealtimeThreadSafeBox/0.initializer_list (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.assignment_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/0.assignment_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.typecast_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/0.typecast_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.pointer_type
+2: [       OK ] TypedRealtimeThreadSafeBox/0.pointer_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.smart_ptr_type
+2: [       OK ] TypedRealtimeThreadSafeBox/0.smart_ptr_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.default_construct_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/0.default_construct_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.initial_value_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/0.initial_value_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.set_and_get_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/0.set_and_get_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.copy_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/0.copy_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.copy
+2: [       OK ] TypedRealtimeThreadSafeBox/0.copy (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.move_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/0.move_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/0.move
+2: [       OK ] TypedRealtimeThreadSafeBox/0.move (0 ms)
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/0 (0 ms total)
+2: 
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/1, where TypeParam = realtime_tools::detail::mutex<realtime_tools::detail::error_mutex_type_t,realtime_tools::detail::robust_robustness_t>
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.empty_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/1.empty_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.default_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/1.default_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.non_default_constructable
+2: [       OK ] TypedRealtimeThreadSafeBox/1.non_default_constructable (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.standard_get
+2: [       OK ] TypedRealtimeThreadSafeBox/1.standard_get (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.initializer_list
+2: [       OK ] TypedRealtimeThreadSafeBox/1.initializer_list (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.assignment_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/1.assignment_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.typecast_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/1.typecast_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.pointer_type
+2: [       OK ] TypedRealtimeThreadSafeBox/1.pointer_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.smart_ptr_type
+2: [       OK ] TypedRealtimeThreadSafeBox/1.smart_ptr_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.default_construct_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/1.default_construct_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.initial_value_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/1.initial_value_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.set_and_get_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/1.set_and_get_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.copy_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/1.copy_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.copy
+2: [       OK ] TypedRealtimeThreadSafeBox/1.copy (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.move_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/1.move_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/1.move
+2: [       OK ] TypedRealtimeThreadSafeBox/1.move (0 ms)
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/1 (0 ms total)
+2: 
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/2, where TypeParam = realtime_tools::detail::mutex<realtime_tools::detail::recursive_mutex_type_t,realtime_tools::detail::robust_robustness_t>
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.empty_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/2.empty_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.default_construct
+2: [       OK ] TypedRealtimeThreadSafeBox/2.default_construct (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.non_default_constructable
+2: [       OK ] TypedRealtimeThreadSafeBox/2.non_default_constructable (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.standard_get
+2: [       OK ] TypedRealtimeThreadSafeBox/2.standard_get (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.initializer_list
+2: [       OK ] TypedRealtimeThreadSafeBox/2.initializer_list (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.assignment_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/2.assignment_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.typecast_operator
+2: [       OK ] TypedRealtimeThreadSafeBox/2.typecast_operator (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.pointer_type
+2: [       OK ] TypedRealtimeThreadSafeBox/2.pointer_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.smart_ptr_type
+2: [       OK ] TypedRealtimeThreadSafeBox/2.smart_ptr_type (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.default_construct_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/2.default_construct_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.initial_value_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/2.initial_value_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.set_and_get_existing
+2: [       OK ] TypedRealtimeThreadSafeBox/2.set_and_get_existing (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.copy_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/2.copy_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.copy
+2: [       OK ] TypedRealtimeThreadSafeBox/2.copy (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.move_assign
+2: [       OK ] TypedRealtimeThreadSafeBox/2.move_assign (0 ms)
+2: [ RUN      ] TypedRealtimeThreadSafeBox/2.move
+2: [       OK ] TypedRealtimeThreadSafeBox/2.move (0 ms)
+2: [----------] 16 tests from TypedRealtimeThreadSafeBox/2 (0 ms total)
+2: 
+2: [----------] Global test environment tear-down
+2: [==========] 48 tests from 3 test suites ran. (0 ms total)
+2: [  PASSED  ] 48 tests.
+2: -- run_test.py: return code 0
+2: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_thread_safe_box_tests.gtest.xml'
+2: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_thread_safe_box_tests.gtest.xml'
+2/9 Test #2: realtime_thread_safe_box_tests ......   Passed    0.08 sec
+test 3
+    Start 3: realtime_buffer_tests
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_buffer_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/realtime_buffer_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/realtime_buffer_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_buffer_tests.gtest.xml"
+3: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+3: Test timeout computed to be: 60
+3: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+3:  - /home/luc/ros2_ws/build/realtime_tools/realtime_buffer_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_buffer_tests.gtest.xml
+3: Running main() from gmock_main.cc
+3: [==========] Running 6 tests from 1 test suite.
+3: [----------] Global test environment set-up.
+3: [----------] 6 tests from RealtimeBuffer
+3: [ RUN      ] RealtimeBuffer.default_construct
+3: [       OK ] RealtimeBuffer.default_construct (0 ms)
+3: [ RUN      ] RealtimeBuffer.initial_value
+3: [       OK ] RealtimeBuffer.initial_value (0 ms)
+3: [ RUN      ] RealtimeBuffer.copy_construct
+3: [       OK ] RealtimeBuffer.copy_construct (0 ms)
+3: [ RUN      ] RealtimeBuffer.assignment_operator
+3: [       OK ] RealtimeBuffer.assignment_operator (0 ms)
+3: [ RUN      ] RealtimeBuffer.write_read_non_rt
+3: [       OK ] RealtimeBuffer.write_read_non_rt (0 ms)
+3: [ RUN      ] RealtimeBuffer.initRT
+3: [       OK ] RealtimeBuffer.initRT (0 ms)
+3: [----------] 6 tests from RealtimeBuffer (0 ms total)
+3: 
+3: [----------] Global test environment tear-down
+3: [==========] 6 tests from 1 test suite ran. (0 ms total)
+3: [  PASSED  ] 6 tests.
+3: -- run_test.py: return code 0
+3: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_buffer_tests.gtest.xml'
+3: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_buffer_tests.gtest.xml'
+3/9 Test #3: realtime_buffer_tests ...............   Passed    0.07 sec
+test 4
+    Start 4: lock_free_queue_tests
+
+4: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/lock_free_queue_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/lock_free_queue_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/lock_free_queue_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/lock_free_queue_tests.gtest.xml"
+4: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+4: Test timeout computed to be: 60
+4: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+4:  - /home/luc/ros2_ws/build/realtime_tools/lock_free_queue_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/lock_free_queue_tests.gtest.xml
+4: Running main() from gmock_main.cc
+4: [==========] Running 15 tests from 2 test suites.
+4: [----------] Global test environment set-up.
+4: [----------] 7 tests from LockFreeSPSCQueue
+4: [ RUN      ] LockFreeSPSCQueue.default_construct
+4: [       OK ] LockFreeSPSCQueue.default_construct (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.initialize_value
+4: [       OK ] LockFreeSPSCQueue.initialize_value (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.test_push
+4: [       OK ] LockFreeSPSCQueue.test_push (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.test_pop
+4: [       OK ] LockFreeSPSCQueue.test_pop (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.test_get_latest
+4: [       OK ] LockFreeSPSCQueue.test_get_latest (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.test_bounded_push
+4: [       OK ] LockFreeSPSCQueue.test_bounded_push (0 ms)
+4: [ RUN      ] LockFreeSPSCQueue.test_lockfree_queue_push
+4: [       OK ] LockFreeSPSCQueue.test_lockfree_queue_push (211 ms)
+4: [----------] 7 tests from LockFreeSPSCQueue (211 ms total)
+4: 
+4: [----------] 8 tests from LockFreeMPMCQueue
+4: [ RUN      ] LockFreeMPMCQueue.default_construct
+4: [       OK ] LockFreeMPMCQueue.default_construct (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.initialize_value
+4: [       OK ] LockFreeMPMCQueue.initialize_value (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_push
+4: [       OK ] LockFreeMPMCQueue.test_push (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_pop
+4: [       OK ] LockFreeMPMCQueue.test_pop (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_get_latest
+4: [       OK ] LockFreeMPMCQueue.test_get_latest (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_bounded_push
+4: [       OK ] LockFreeMPMCQueue.test_bounded_push (0 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_lockfree_queue_push
+4: [       OK ] LockFreeMPMCQueue.test_lockfree_queue_push (637 ms)
+4: [ RUN      ] LockFreeMPMCQueue.test_lockfree_queue_bounded_push
+4: producer_count: 188231
+4: producer_count: 1000000
+4: consumer_count: 9618
+4: iterations: 1000000
+4: producer_count: 209899
+4: producer_count: 1000000
+4: consumer_count: 331741
+4: iterations: 1000000
+4: [       OK ] LockFreeMPMCQueue.test_lockfree_queue_bounded_push (994 ms)
+4: [----------] 8 tests from LockFreeMPMCQueue (1632 ms total)
+4: 
+4: [----------] Global test environment tear-down
+4: [==========] 15 tests from 2 test suites ran. (1843 ms total)
+4: [  PASSED  ] 15 tests.
+4: -- run_test.py: return code 0
+4: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/lock_free_queue_tests.gtest.xml'
+4: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/lock_free_queue_tests.gtest.xml'
+4/9 Test #4: lock_free_queue_tests ...............   Passed    1.91 sec
+test 5
+    Start 5: realtime_publisher_tests
+
+5: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_publisher_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/realtime_publisher_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/realtime_publisher_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_publisher_tests.gtest.xml"
+5: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+5: Test timeout computed to be: 60
+5: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+5:  - /home/luc/ros2_ws/build/realtime_tools/realtime_publisher_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_publisher_tests.gtest.xml
+5: Running main() from gmock_main.cc
+5: [==========] Running 1 test from 1 test suite.
+5: [----------] Global test environment set-up.
+5: [----------] 1 test from RealtimePublisher
+5: [ RUN      ] RealtimePublisher.rt_can_try_publish
+5: [       OK ] RealtimePublisher.rt_can_try_publish (3022 ms)
+5: [----------] 1 test from RealtimePublisher (3022 ms total)
+5: 
+5: [----------] Global test environment tear-down
+5: [==========] 1 test from 1 test suite ran. (3022 ms total)
+5: [  PASSED  ] 1 test.
+5: -- run_test.py: return code 0
+5: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_publisher_tests.gtest.xml'
+5: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_publisher_tests.gtest.xml'
+5/9 Test #5: realtime_publisher_tests ............   Passed    3.20 sec
+test 6
+    Start 6: realtime_server_goal_handle_tests
+
+6: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_server_goal_handle_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/realtime_server_goal_handle_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/realtime_server_goal_handle_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_server_goal_handle_tests.gtest.xml"
+6: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+6: Test timeout computed to be: 60
+6: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+6:  - /home/luc/ros2_ws/build/realtime_tools/realtime_server_goal_handle_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_server_goal_handle_tests.gtest.xml
+6: Running main() from gmock_main.cc
+6: [==========] Running 4 tests from 1 test suite.
+6: [----------] Global test environment set-up.
+6: [----------] 4 tests from RealtimeServerGoalHandle
+6: [ RUN      ] RealtimeServerGoalHandle.set_aborted
+6: [       OK ] RealtimeServerGoalHandle.set_aborted (277 ms)
+6: [ RUN      ] RealtimeServerGoalHandle.set_canceled
+6: [       OK ] RealtimeServerGoalHandle.set_canceled (516 ms)
+6: [ RUN      ] RealtimeServerGoalHandle.set_succeeded
+6: [       OK ] RealtimeServerGoalHandle.set_succeeded (261 ms)
+6: [ RUN      ] RealtimeServerGoalHandle.send_feedback
+6: [       OK ] RealtimeServerGoalHandle.send_feedback (516 ms)
+6: [----------] 4 tests from RealtimeServerGoalHandle (1571 ms total)
+6: 
+6: [----------] Global test environment tear-down
+6: [==========] 4 tests from 1 test suite ran. (1571 ms total)
+6: [  PASSED  ] 4 tests.
+6: -- run_test.py: return code 0
+6: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_server_goal_handle_tests.gtest.xml'
+6: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_server_goal_handle_tests.gtest.xml'
+6/9 Test #6: realtime_server_goal_handle_tests ...   Passed    1.76 sec
+test 7
+    Start 7: test_async_function_handler
+
+7: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/test_async_function_handler.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/test_async_function_handler.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/test_async_function_handler" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/test_async_function_handler.gtest.xml"
+7: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+7: Test timeout computed to be: 60
+7: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+7:  - /home/luc/ros2_ws/build/realtime_tools/test_async_function_handler --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/test_async_function_handler.gtest.xml
+7: Running main() from gmock_main.cc
+7: [==========] Running 7 tests from 1 test suite.
+7: [----------] Global test environment set-up.
+7: [----------] 7 tests from AsyncFunctionHandlerTest
+7: [ RUN      ] AsyncFunctionHandlerTest.check_initialization
+7: [       OK ] AsyncFunctionHandlerTest.check_initialization (10 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.check_triggering
+7: [       OK ] AsyncFunctionHandlerTest.check_triggering (10 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.trigger_for_several_cycles
+7: [       OK ] AsyncFunctionHandlerTest.trigger_for_several_cycles (2321 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.test_with_deactivate_and_activate_cycles
+7: [       OK ] AsyncFunctionHandlerTest.test_with_deactivate_and_activate_cycles (17 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.check_triggering_with_different_return_state_and_predicate
+7: [       OK ] AsyncFunctionHandlerTest.check_triggering_with_different_return_state_and_predicate (10 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.check_exception_handling
+7: [ERROR] [1777988961.915335377] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915525184] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915545379] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915558167] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915570700] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915582519] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915594291] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915606179] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915620769] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915632632] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915644506] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915656320] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915668216] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915680024] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915691914] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915703803] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915717508] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915729506] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915741411] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915753289] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915765077] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915776952] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915788729] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915800771] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915820654] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915838178] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915850670] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915862514] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915874543] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915886327] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915898251] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915909972] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915921660] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915937037] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915953287] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915968330] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915980374] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.915992111] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916003977] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916015741] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916027718] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916039592] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916051282] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916065973] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916078089] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916090617] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916102661] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916114613] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916126483] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916138354] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [ERROR] [1777988961.916152129] [AsyncFunctionHandler]: AsyncFunctionHandler: Exception caught in the async callback thread!
+7: [       OK ] AsyncFunctionHandlerTest.check_exception_handling (21 ms)
+7: [ RUN      ] AsyncFunctionHandlerTest.trigger_for_several_cycles_in_detached_scheduling_policy
+7: [WARN] [1777988961.946216847] [AsyncFunctionHandler]: Async worker thread is successfully pinned to the requested CPU cores!
+7: [WARN] [1777988962.956245758] [AsyncFunctionHandler]: AsyncFunctionHandler is configured with DETACHED scheduling policy. This means that the async callback may not be synchronized with the main thread. 
+7: [INFO] [1777988964.956416243] [AsyncFunctionHandler]: AsyncFunctionHandler: Pausing the async callback thread.
+7: [INFO] [1777988964.958286101] [test_async_function_handler]: Async function handler paused, counter: 1505
+7: [INFO] [1777988966.958373163] [test_async_function_handler]: Resuming async function handler, counter: 1505
+7: [INFO] [1777988966.958399399] [AsyncFunctionHandler]: AsyncFunctionHandler: Resuming the async callback thread.
+7: [WARN] [1777988966.958464259] [AsyncFunctionHandler]: Overrun detected! The async callback missed its desired rate of 500 Hz. The loop took 2000.196343 ms (missed cycles : 1001).
+7: [       OK ] AsyncFunctionHandlerTest.trigger_for_several_cycles_in_detached_scheduling_policy (7037 ms)
+7: [----------] 7 tests from AsyncFunctionHandlerTest (9428 ms total)
+7: 
+7: [----------] Global test environment tear-down
+7: [==========] 7 tests from 1 test suite ran. (9434 ms total)
+7: [  PASSED  ] 7 tests.
+7: -- run_test.py: return code 0
+7: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/test_async_function_handler.gtest.xml'
+7: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/test_async_function_handler.gtest.xml'
+7/9 Test #7: test_async_function_handler .........   Passed    9.62 sec
+test 8
+    Start 8: realtime_mutex_tests
+
+8: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_mutex_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/realtime_mutex_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/realtime_mutex_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_mutex_tests.gtest.xml"
+8: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+8: Test timeout computed to be: 60
+8: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+8:  - /home/luc/ros2_ws/build/realtime_tools/realtime_mutex_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_mutex_tests.gtest.xml
+8: [==========] Running 18 tests from 1 test suite.
+8: [----------] Global test environment set-up.
+8: [----------] 18 tests from PriorityInheritanceMutexTests
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded (200 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.recursive_lock_lock_unlock_multithreaded
+8: [       OK ] PriorityInheritanceMutexTests.recursive_lock_lock_unlock_multithreaded (400 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_multiple_mutexes
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_multiple_mutexes (300 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_multiple_mutexes_different_types
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_multiple_mutexes_different_types (300 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_recursive_mutex
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_recursive_mutex (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_recursive_mutex_multiple_mutexes
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_recursive_mutex_multiple_mutexes (300 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_mutex_one_thread_dies
+8: Mutex owner died, but the mutex is consistent now. This shouldn't happen!
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_mutex_one_thread_dies (100 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_recursive_mutex_one_thread_dies
+8: Mutex owner died, but the mutex is consistent now. This shouldn't happen!
+8: [       OK ] PriorityInheritanceMutexTests.lock_unlock_multithreaded_recursive_mutex_one_thread_dies (100 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.lock_guard_mutex
+8: [       OK ] PriorityInheritanceMutexTests.lock_guard_mutex (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.unique_lock_mutex
+8: [       OK ] PriorityInheritanceMutexTests.unique_lock_mutex (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.try_lock_mutex
+8: [       OK ] PriorityInheritanceMutexTests.try_lock_mutex (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.standard_lock_test
+8: [       OK ] PriorityInheritanceMutexTests.standard_lock_test (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.native_handle_mutex
+8: [       OK ] PriorityInheritanceMutexTests.native_handle_mutex (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.test_mutex_lock_functionality
+8: [       OK ] PriorityInheritanceMutexTests.test_mutex_lock_functionality (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.test_lock_constructors
+8: [       OK ] PriorityInheritanceMutexTests.test_lock_constructors (0 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.test_deadlock_detection
+8: [       OK ] PriorityInheritanceMutexTests.test_deadlock_detection (100 ms)
+8: [ RUN      ] PriorityInheritanceMutexTests.test_mutex_reflection
+8: [       OK ] PriorityInheritanceMutexTests.test_mutex_reflection (0 ms)
+8: [----------] 18 tests from PriorityInheritanceMutexTests (1802 ms total)
+8: 
+8: [----------] Global test environment tear-down
+8: [==========] 18 tests from 1 test suite ran. (1802 ms total)
+8: [  PASSED  ] 18 tests.
+8: -- run_test.py: return code 0
+8: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_mutex_tests.gtest.xml'
+8: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/realtime_mutex_tests.gtest.xml'
+8/9 Test #8: realtime_mutex_tests ................   Passed    1.88 sec
+test 9
+    Start 9: evl_environment_tests
+
+9: Test command: /usr/bin/python3 "-u" "/opt/ros/jazzy/share/ament_cmake_test/cmake/run_test.py" "/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/evl_environment_tests.gtest.xml" "--package-name" "realtime_tools" "--output-file" "/home/luc/ros2_ws/build/realtime_tools/ament_cmake_gmock/evl_environment_tests.txt" "--command" "/home/luc/ros2_ws/build/realtime_tools/evl_environment_tests" "--gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/evl_environment_tests.gtest.xml"
+9: Working Directory: /home/luc/ros2_ws/build/realtime_tools
+9: Test timeout computed to be: 60
+9: -- run_test.py: invoking following command in '/home/luc/ros2_ws/build/realtime_tools':
+9:  - /home/luc/ros2_ws/build/realtime_tools/evl_environment_tests --gtest_output=xml:/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/evl_environment_tests.gtest.xml
+9: [SETUP] RT environment:
+9:   mlockall  : OK
+9:   evl_init  : FAILED
+9:   sched_fifo: OK
+9:   warnings  : HAVE_EVL non défini à la compilation ; 
+9: [==========] Running 12 tests from 3 test suites.
+9: [----------] Global test environment set-up.
+9: [----------] 3 tests from EnvironmentDetection
+9: [ RUN      ] EnvironmentDetection.is_evl_available_returns_bool
+9: [INFO] is_evl_available() = false
+9: [       OK ] EnvironmentDetection.is_evl_available_returns_bool (0 ms)
+9: [ RUN      ] EnvironmentDetection.setup_rt_environment_does_not_crash
+9: [INFO] setup_rt_environment():
+9:   mlockall_ok    = true
+9:   evl_init_ok    = false
+9:   sched_fifo_ok  = true
+9:   message        = "HAVE_EVL non défini à la compilation ; "
+9: [       OK ] EnvironmentDetection.setup_rt_environment_does_not_crash (0 ms)
+9: [ RUN      ] EnvironmentDetection.is_evl_available_thread_safe
+9: [       OK ] EnvironmentDetection.is_evl_available_thread_safe (11 ms)
+9: [----------] 3 tests from EnvironmentDetection (12 ms total)
+9: 
+9: [----------] 6 tests from ModeSwitchDetector
+9: [ RUN      ] ModeSwitchDetector.capture_returns_valid_snapshot_when_attached
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.capture_returns_valid_snapshot_when_attached (1 ms)
+9: [ RUN      ] ModeSwitchDetector.pure_computation_triggers_no_mode_switch
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.pure_computation_triggers_no_mode_switch (0 ms)
+9: [ RUN      ] ModeSwitchDetector.write_syscall_triggers_mode_switch
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.write_syscall_triggers_mode_switch (0 ms)
+9: [ RUN      ] ModeSwitchDetector.atomic_operations_no_mode_switch
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.atomic_operations_no_mode_switch (0 ms)
+9: [ RUN      ] ModeSwitchDetector.expect_variant_is_non_fatal
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.expect_variant_is_non_fatal (0 ms)
+9: [ RUN      ] ModeSwitchDetector.two_captures_without_operation_give_zero
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] ModeSwitchDetector.two_captures_without_operation_give_zero (0 ms)
+9: [----------] 6 tests from ModeSwitchDetector (1 ms total)
+9: 
+9: [----------] 3 tests from EvlFixtureSetup
+9: [ RUN      ] EvlFixtureSetup.evl_fd_is_valid_during_test
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] EvlFixtureSetup.evl_fd_is_valid_during_test (0 ms)
+9: [ RUN      ] EvlFixtureSetup.thread_is_sched_fifo
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] EvlFixtureSetup.thread_is_sched_fifo (0 ms)
+9: [ RUN      ] EvlFixtureSetup.thread_visible_in_evl_procfs
+9: /home/luc/ros2_ws/src/ros-controls/portage_realtime_tools_evl/realtime_tools/test/evl_test_helpers.hpp:277: Skipped
+9: Xenomai EVL non disponible. Ce test requiert un kernel EVL chargé.
+9: 
+9: [  SKIPPED ] EvlFixtureSetup.thread_visible_in_evl_procfs (0 ms)
+9: [----------] 3 tests from EvlFixtureSetup (0 ms total)
+9: 
+9: [----------] Global test environment tear-down
+9: [==========] 12 tests from 3 test suites ran. (13 ms total)
+9: [  PASSED  ] 3 tests.
+9: [  SKIPPED ] 9 tests, listed below:
+9: [  SKIPPED ] ModeSwitchDetector.capture_returns_valid_snapshot_when_attached
+9: [  SKIPPED ] ModeSwitchDetector.pure_computation_triggers_no_mode_switch
+9: [  SKIPPED ] ModeSwitchDetector.write_syscall_triggers_mode_switch
+9: [  SKIPPED ] ModeSwitchDetector.atomic_operations_no_mode_switch
+9: [  SKIPPED ] ModeSwitchDetector.expect_variant_is_non_fatal
+9: [  SKIPPED ] ModeSwitchDetector.two_captures_without_operation_give_zero
+9: [  SKIPPED ] EvlFixtureSetup.evl_fd_is_valid_during_test
+9: [  SKIPPED ] EvlFixtureSetup.thread_is_sched_fifo
+9: [  SKIPPED ] EvlFixtureSetup.thread_visible_in_evl_procfs
+9: -- run_test.py: return code 0
+9: -- run_test.py: inject classname prefix into gtest result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/evl_environment_tests.gtest.xml'
+9: -- run_test.py: verify result file '/home/luc/ros2_ws/build/realtime_tools/test_results/realtime_tools/evl_environment_tests.gtest.xml'
+9/9 Test #9: evl_environment_tests ...............   Passed    0.11 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Label Time Summary:
+gmock    =  19.03 sec*proc (9 tests)
+
+Total Test time (real) =  19.03 sec
