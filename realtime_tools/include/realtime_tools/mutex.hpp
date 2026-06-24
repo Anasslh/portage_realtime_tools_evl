@@ -21,206 +21,23 @@
 #error "The mutex.hpp header is not supported on Windows platforms"
 #endif
 
-#include <pthread.h>
-#include <cerrno>
-#include <cstring>
-#include <iostream>
-#include <memory>
-#include <stdexcept>
-#include <string>
+// Le backend est sélectionné par CMake via target_include_directories.
+// Sur posix   : inclut backends/posix/rt_mutex.hpp   (pthread + PRIO_INHERIT)
+// Sur xenomai : inclut backends/xenomai/rt_mutex.hpp  (evl_mutex)
+#include <rt_mutex.hpp>
 
-/**
- * @brief A pthread mutex wrapper that provides a mutex with the priority inheritance
- * protocol and a priority ceiling of 99.
- * The mutex is also error checked and robust.
- * This mutex is intended to be used in real-time contexts.
- * @note This mutex is not recursive.
- */
 namespace realtime_tools
 {
+// API publique inchangée — les utilisateurs de ros2_control ne modifient rien.
+using prio_inherit_mutex = rt::mutex;
+using prio_inherit_recursive_mutex = rt::recursive_mutex;
+
+// Aliases de compatibilité pour les tests qui inspectent les types internes.
 namespace detail
 {
-struct error_mutex_type_t
-{
-  static constexpr int value = PTHREAD_MUTEX_ERRORCHECK;
-};
-
-struct recursive_mutex_type_t
-{
-  static constexpr int value = PTHREAD_MUTEX_RECURSIVE;
-};
-
-struct stalled_robustness_t
-{
-#if defined(__linux__)
-  static constexpr int value = PTHREAD_MUTEX_STALLED;
-#else
-  static constexpr int value = 0;  // macOS, Windows, or other platforms fallback
-#endif
-};
-
-struct robust_robustness_t
-{
-#if defined(__linux__)
-  static constexpr int value = PTHREAD_MUTEX_ROBUST;
-#else
-  static constexpr int value = 0;  // macOS, Windows, or other platforms fallback
-#endif
-};
-/**
- * @brief A class template that provides a pthread mutex with the priority inheritance protocol
- *
- * @tparam MutexType The type of the mutex. It can be one of the following: PTHREAD_MUTEX_NORMAL, PTHREAD_MUTEX_RECURSIVE, PTHREAD_MUTEX_ERRORCHECK, PTHREAD_MUTEX_DEFAULT
- * @tparam MutexRobustness The robustness of the mutex. It can be one of the following: PTHREAD_MUTEX_STALLED, PTHREAD_MUTEX_ROBUST
- */
-template <typename MutexType, typename MutexRobustness>
-class mutex
-{
-public:
-  using native_handle_type = pthread_mutex_t *;
-  using type = MutexType;
-  using robustness = MutexRobustness;
-
-  mutex()
-  {
-    pthread_mutexattr_t attr;
-
-    const auto attr_destroy = [](pthread_mutexattr_t * mutex_attr) {
-      // Destroy the mutex attributes
-      const auto res_destroy = pthread_mutexattr_destroy(mutex_attr);
-      if (res_destroy != 0) {
-        throw std::system_error(
-          res_destroy, std::generic_category(), "Failed to destroy mutex attribute");
-      }
-    };
-    using attr_cleanup_t = std::unique_ptr<pthread_mutexattr_t, decltype(attr_destroy)>;
-    auto attr_cleanup = attr_cleanup_t(&attr, attr_destroy);
-
-    // Initialize the mutex attributes
-    const auto res_attr = pthread_mutexattr_init(&attr);
-    if (res_attr != 0) {
-      throw std::system_error(
-        res_attr, std::system_category(), "Failed to initialize mutex attribute");
-    }
-
-    // Set the mutex type to MutexType
-    const auto res_type = pthread_mutexattr_settype(&attr, MutexType::value);
-
-    if (res_type != 0) {
-      throw std::system_error(res_type, std::system_category(), "Failed to set mutex type");
-    }
-
-    // Set the mutex attribute to use the protocol PTHREAD_PRIO_INHERIT
-    const auto res_protocol = pthread_mutexattr_setprotocol(&attr, PTHREAD_PRIO_INHERIT);
-    if (res_protocol != 0) {
-      throw std::system_error(res_protocol, std::system_category(), "Failed to set mutex protocol");
-    }
-
-    // Set the mutex attribute robustness to MutexRobustness
-    // On platforms like macOS, pthread_mutexattr_setrobust is not available,
-    // so skip this step
-#if defined(__linux__)
-    const auto res_robust = pthread_mutexattr_setrobust(&attr, MutexRobustness::value);
-    if (res_robust != 0) {
-      throw std::system_error(res_robust, std::system_category(), "Failed to set mutex robustness");
-    }
-#endif
-
-    // Initialize the mutex with the attributes
-    const auto res_init = pthread_mutex_init(&mutex_, &attr);
-    if (res_init != 0) {
-      throw std::system_error(res_init, std::system_category(), "Failed to initialize mutex");
-    }
-  }
-
-  ~mutex()
-  {
-    const auto res = pthread_mutex_destroy(&mutex_);
-    if (res != 0) {
-      std::cerr << "Failed to destroy mutex : " << std::strerror(res) << std::endl;
-    }
-  }
-
-  mutex(const mutex &) = delete;
-
-  mutex & operator=(const mutex &) = delete;
-
-  native_handle_type native_handle() noexcept { return &mutex_; }
-
-  void lock()
-  {
-    const auto res = pthread_mutex_lock(&mutex_);
-    if (res == 0) {
-      return;
-    }
-    if (res == EOWNERDEAD) {
-#if defined(__linux__)
-      const auto res_consistent = pthread_mutex_consistent(&mutex_);
-      if (res_consistent != 0) {
-        throw std::runtime_error(
-          std::string("Failed to make mutex consistent : ") + std::strerror(res_consistent));
-      }
-      std::cerr << "Mutex owner died, but the mutex is consistent now. This shouldn't happen!"
-                << std::endl;
-#else
-      // On platforms without pthread_mutex_consistent support, just log a warning
-      std::cerr
-        << "Mutex owner died, but pthread_mutex_consistent is not supported on this platform."
-        << std::endl;
-#endif
-    } else if (res == EDEADLK) {
-      throw std::system_error(res, std::system_category(), "Deadlock detected");
-    } else {
-      throw std::runtime_error(std::string("Failed to lock mutex : ") + std::strerror(res));
-    }
-  }
-
-  void unlock() noexcept
-  {
-    // As per the requirements of BasicLockable concept, unlock should not throw
-    const auto res = pthread_mutex_unlock(&mutex_);
-    if (res != 0) {
-      std::cerr << "Failed to unlock mutex : " << std::strerror(res) << std::endl;
-    }
-  }
-
-  bool try_lock()
-  {
-    const auto res = pthread_mutex_trylock(&mutex_);
-    if (res == 0) {
-      return true;
-    }
-    if (res == EBUSY) {
-      return false;
-    } else if (res == EOWNERDEAD) {
-#if defined(__linux__)
-      const auto res_consistent = pthread_mutex_consistent(&mutex_);
-      if (res_consistent != 0) {
-        throw std::runtime_error(
-          std::string("Failed to make mutex consistent : ") + std::strerror(res_consistent));
-      }
-      std::cerr << "Mutex owner died, but the mutex is consistent now. This shouldn't happen!"
-                << std::endl;
-#else
-      std::cerr
-        << "Mutex owner died, but pthread_mutex_consistent is not supported on this platform."
-        << std::endl;
-#endif
-    } else if (res == EDEADLK) {
-      throw std::system_error(res, std::system_category(), "Deadlock detected");
-    } else {
-      throw std::runtime_error(std::string("Failed to try lock mutex : ") + std::strerror(res));
-    }
-    return true;
-  }
-
-private:
-  pthread_mutex_t mutex_;
-};
+using error_mutex_type_t = rt::detail::error_mutex_type_t;
+using recursive_mutex_type_t = rt::detail::recursive_mutex_type_t;
 }  // namespace detail
-using prio_inherit_mutex = detail::mutex<detail::error_mutex_type_t, detail::robust_robustness_t>;
-using prio_inherit_recursive_mutex =
-  detail::mutex<detail::recursive_mutex_type_t, detail::robust_robustness_t>;
 }  // namespace realtime_tools
 
 #endif  // REALTIME_TOOLS__MUTEX_HPP_
