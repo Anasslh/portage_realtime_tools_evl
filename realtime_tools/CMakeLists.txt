@@ -4,6 +4,12 @@ project(realtime_tools LANGUAGES CXX)
 find_package(ros2_control_cmake REQUIRED)
 set_compiler_options()
 
+# ── Sélection du backend RT ───────────────────────────────────────────────────
+# posix   : pthread + PREEMPT_RT (défaut, compile sur tout Linux/macOS)
+# xenomai : EVL/Xenomai 4 — nécessite libevl et un kernel EVL
+option(RT_BACKEND "RT backend to use: posix (default) or xenomai" "posix")
+message(STATUS "RT_BACKEND = ${RT_BACKEND}")
+
 if(WIN32)
   add_compile_definitions(
     # For math constants
@@ -42,6 +48,18 @@ target_include_directories(realtime_tools PUBLIC
   $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include/realtime_tools>
 )
+if(RT_BACKEND STREQUAL "xenomai")
+  target_include_directories(realtime_tools PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/backends/xenomai>
+    $<INSTALL_INTERFACE:include/realtime_tools/backends/xenomai>
+  )
+  target_link_libraries(realtime_tools PUBLIC evl)
+else()
+  target_include_directories(realtime_tools PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/backends/posix>
+    $<INSTALL_INTERFACE:include/realtime_tools/backends/posix>
+  )
+endif()
 target_link_libraries(realtime_tools PUBLIC rclcpp::rclcpp rclcpp_action::rclcpp_action rcpputils::rcpputils Threads::Threads Boost::boost)
 if(UNIX AND NOT APPLE)
   target_link_libraries(realtime_tools PUBLIC cap)
