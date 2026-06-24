@@ -47,6 +47,7 @@
 #include <utility>
 
 #include "rclcpp/publisher.hpp"
+#include <rt_thread.hpp>
 
 namespace realtime_tools
 {
@@ -205,6 +206,7 @@ private:
    */
   void publishingLoop()
   {
+    rt::thread_attach("rt_publisher");
     is_running_ = true;
 
     while (keep_running_) {

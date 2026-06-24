@@ -28,6 +28,8 @@
 #include <string>
 #include <thread>
 #include <utility>
+
+#include <rt_thread.hpp>
 #include <vector>
 
 #include "rclcpp/clock.hpp"
@@ -547,6 +549,7 @@ public:
     if (!thread_.joinable()) {
       reset_variables();
       thread_ = std::thread([this]() -> void {
+        rt::thread_attach("async_function_handler");
         if (!realtime_tools::configure_sched_fifo(thread_priority_)) {
           RCLCPP_WARN(
             params_.logger,
