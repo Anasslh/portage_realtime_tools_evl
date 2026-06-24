@@ -30,9 +30,8 @@ endforeach()
 
 if(POLICY CMP0167)
   cmake_policy(SET CMP0167 NEW)
-endif()
-find_package(Boost COMPONENTS headers)
-if(NOT Boost_headers_FOUND)
+  find_package(Boost REQUIRED CONFIG)
+else()
   find_package(Boost REQUIRED)
 endif()
 
@@ -183,5 +182,5 @@ install(TARGETS realtime_tools thread_priority
 )
 
 ament_export_targets(export_realtime_tools HAS_LIBRARY_TARGET)
-ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS} Boost)
-ament_package()
+ament_export_dependencies(${THIS_PACKAGE_INCLUDE_DEPENDS})
+ament_package(CONFIG_EXTRAS cmake/realtime_tools-extras.cmake)
