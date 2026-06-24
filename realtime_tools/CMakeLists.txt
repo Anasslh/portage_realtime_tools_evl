@@ -4,10 +4,47 @@ project(realtime_tools LANGUAGES CXX)
 find_package(ros2_control_cmake REQUIRED)
 set_compiler_options()
 
+# ── Détection de Xenomai EVL ──────────────────────────────────────────────────
+# Doit être fait AVANT la sélection du backend pour permettre l'auto-détection.
+# libevl est la bibliothèque userspace du co-kernel Xenomai 4 (EVL).
+find_library(EVL_LIBRARY NAMES evl PATHS /usr/lib /usr/local/lib)
+find_path(EVL_INCLUDE_DIR NAMES evl/evl.h PATHS /usr/include /usr/local/include)
+
+if(EVL_LIBRARY AND EVL_INCLUDE_DIR)
+  set(HAVE_EVL TRUE)
+  set(_rt_backend_default "xenomai")
+  message(STATUS "Xenomai EVL trouvé : lib=${EVL_LIBRARY}, include=${EVL_INCLUDE_DIR}")
+
+  include(CheckCXXSourceCompiles)
+  set(CMAKE_REQUIRED_LIBRARIES ${EVL_LIBRARY})
+  set(CMAKE_REQUIRED_INCLUDES ${EVL_INCLUDE_DIR})
+  check_cxx_source_compiles("
+    #include <evl/thread.h>
+    int main() {
+      struct evl_thread_stats s{};
+      evl_get_stats(0, &s);
+      return s.nssw;
+    }
+  " HAVE_EVL_GET_STATS)
+  unset(CMAKE_REQUIRED_LIBRARIES)
+  unset(CMAKE_REQUIRED_INCLUDES)
+
+  if(HAVE_EVL_GET_STATS)
+    message(STATUS "  evl_get_stats() disponible (API moderne)")
+  else()
+    message(STATUS "  evl_get_stats() absent — utilisation du fallback procfs")
+  endif()
+else()
+  set(HAVE_EVL FALSE)
+  set(_rt_backend_default "posix")
+  message(STATUS "Xenomai EVL non trouvé — backend posix par défaut")
+endif()
+
 # ── Sélection du backend RT ───────────────────────────────────────────────────
-# posix   : pthread + PREEMPT_RT (défaut, compile sur tout Linux/macOS)
+# Auto-détecté d'après la présence de libevl. Override possible : -DRT_BACKEND=posix
+# posix   : pthread + PREEMPT_RT (compile sur tout Linux/macOS)
 # xenomai : EVL/Xenomai 4 — nécessite libevl et un kernel EVL
-option(RT_BACKEND "RT backend to use: posix (default) or xenomai" "posix")
+set(RT_BACKEND "${_rt_backend_default}" CACHE STRING "RT backend: posix or xenomai")
 message(STATUS "RT_BACKEND = ${RT_BACKEND}")
 
 if(WIN32)
@@ -76,45 +113,6 @@ target_include_directories(thread_priority PUBLIC
 target_link_libraries(thread_priority PUBLIC rclcpp::rclcpp rclcpp_action::rclcpp_action rcpputils::rcpputils Threads::Threads)
 if(UNIX AND NOT APPLE)
   target_link_libraries(thread_priority PUBLIC cap)
-endif()
-
-# ── Détection optionnelle de Xenomai EVL ─────────────────────────────────────
-# libevl est la bibliothèque userspace du co-kernel Xenomai 4 (EVL).
-# Elle est installée dans /usr/lib ou /usr/local/lib sur un système Xenomai.
-# Si absente, tous les tests EVL-spécifiques se compilent mais se sautent
-# automatiquement à l'exécution via SKIP_IF_NOT_EVL() / EvlTestFixture.
-find_library(EVL_LIBRARY NAMES evl PATHS /usr/lib /usr/local/lib)
-find_path(EVL_INCLUDE_DIR NAMES evl/evl.h PATHS /usr/include /usr/local/include)
-
-if(EVL_LIBRARY AND EVL_INCLUDE_DIR)
-  set(HAVE_EVL TRUE)
-  message(STATUS "Xenomai EVL trouvé : lib=${EVL_LIBRARY}, include=${EVL_INCLUDE_DIR}")
-
-  # Vérifier si evl_get_stats() est disponible (API moderne, libevl ≥ r33).
-  # On fait une vérification à la compilation avec try_compile pour éviter
-  # les surprises sur des versions plus anciennes d'EVL.
-  include(CheckCXXSourceCompiles)
-  set(CMAKE_REQUIRED_LIBRARIES ${EVL_LIBRARY})
-  set(CMAKE_REQUIRED_INCLUDES ${EVL_INCLUDE_DIR})
-  check_cxx_source_compiles("
-    #include <evl/thread.h>
-    int main() {
-      struct evl_thread_stats s{};
-      evl_get_stats(0, &s);
-      return s.nssw;
-    }
-  " HAVE_EVL_GET_STATS)
-  unset(CMAKE_REQUIRED_LIBRARIES)
-  unset(CMAKE_REQUIRED_INCLUDES)
-
-  if(HAVE_EVL_GET_STATS)
-    message(STATUS "  evl_get_stats() disponible (API moderne)")
-  else()
-    message(STATUS "  evl_get_stats() absent — utilisation du fallback procfs")
-  endif()
-else()
-  set(HAVE_EVL FALSE)
-  message(STATUS "Xenomai EVL non trouvé — les tests EVL seront skippés à l'exécution")
 endif()
 
 # Helper de fonction : applique les définitions/includes/libs EVL à une cible.
